@@ -1,0 +1,20 @@
+<!-- novo_assunto.html -->
+
+{% extends 'principal/base.html' %}
+
+{% block header %}
+  <h2>Adicionar um novo assunto</h2>
+{% endblock header %}
+
+{% block content %}
+  <form action="{% url 'principal:novo_assunto' %}" method="post" class="form">
+    {% csrf_token %}
+    
+    <div class="form-group">
+      <label for="id_titulo">Título</label>
+      <input class="form-control" type="text" name="titulo" maxlength="200" required="" id="id_titulo">
+    </div>
+    
+    <button class="btn btn-primary" name="submit">Adiciona assunto</button>
+  </form>
+{% endblock content %}

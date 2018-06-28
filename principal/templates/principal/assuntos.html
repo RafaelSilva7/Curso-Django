@@ -1,0 +1,17 @@
+<!-- Assuntos -->
+{% extends "principal/base.html" %}
+
+{% block header %}
+    <h2>Assuntos</h2>
+    <a href="{% url 'principal:novo_assunto' %}">Novo assunto</a>
+{% endblock header %}
+
+{% block content %}
+  <div class="list-group">
+    {% for assunto in assuntos %}
+      <a href="{% url 'principal:assunto' assunto.id %}" class="list-group-item list-group-item-action"> {{ assunto }}</a>
+    {% empty %}
+      <p>Nenhum assunto adicionado.</p>
+    {% endfor %}
+  </div>
+{% endblock content %}

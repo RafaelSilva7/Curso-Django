@@ -1,0 +1,39 @@
+<!-- Exibe as entradas de um assunto -->
+{% extends 'principal/base.html' %}
+
+{% block header %}
+  <h2>Assunto: {{ assunto }}</h2>
+  
+  <p>
+    <a href="{% url 'principal:nova_entrada' assunto.id %}">Nova entrada</a>
+  </p>
+{% endblock header %}
+
+{% block content %}
+  <div class="col-lg-8">
+    {% for entrada in entradas %}
+      <h1 class="mt-4">{{ entrada.titulo }}</h1>
+      <p class="lead">
+        por
+        <a href="#">{{ entrada.usuario }}</a>
+      </p>
+
+      <hr>
+
+      <p>Postado em {{ entrada.data_adicao|date:'d M, Y' }} - <a href="{% url 'principal:edita_entrada' entrada.id %}">editar</a></p>
+
+      <hr>
+
+      <img class="img-fluid rounded" src="{{ entrada.imagem }}" alt="Imagem não encontrada">
+
+      <hr>
+
+      <p>{{ entrada.texto }}</p>
+      
+      <hr>
+    {% empty %}
+      <p>Não existe nenhuma entrada para este assunto.</p>
+    {% endfor %}
+  
+  </div>
+{% endblock content %}
